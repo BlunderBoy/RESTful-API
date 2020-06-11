@@ -4,13 +4,13 @@ Program written in pure C++, using TCP and input multiplexing.
 You should be able to test this on any linux machine (or on WSL 2) without
 installing anything extra.
 Libraries used: 
-    nlohman for JSON https://github.com/nlohmann/json
+    Nlohman for JSON https://github.com/nlohmann/json
     Berkley sockets
-    TCP and the linux networking stack
+    TCP and the Linux networking stack
 
 Preface:
     My current priority is getting good grades in the exams to keep
-my scholarship and the assingment came in the middle of the exam 
+my scholarship and the assignment came in the middle of the exam 
 period. I am currently in between exams and I didn't have time to check
 the code (I just made it compile) but I decided to send it anyway
 more as a proof of concept for some of my knowledge. I wrote this code
@@ -38,7 +38,7 @@ Task3.
 you use the same ip you won't be able to make any request if you exceeded the limit.
 The limit I put is 10 requests every 15 minutes. The values can be easily modified
 as they are in defines at the top of the code.
-    How it's actually implemented: Everytime a new ip logs into the server the ip,
+    How it's actually implemented: Every time a new ip logs into the server the ip,
 the file descriptor and the current time (as UNIX time) are saved in a database.
 The program checks if you have requests left and deducts one from your total.
 At every point in the main loop we check for each ip adress we have if 15 minutes 
@@ -56,31 +56,32 @@ server can read is "exit".
     The server is written over TCP with the maximum request size of 1.5KB.
 It runs on the port designated by the PORT macro, ipv4 and listens for any
 incoming adress.
+    Everyone can add and querry products from this API.
 
 The API:
 
 POST:
     -at api/register to register a new account.
-        returns an warning if the account already exists.
-        returns an error if it doesnt recieve json data.
+        Returns an warning if the account already exists.
+        Returns an error if it doesnt recieve json data.
 
     -at api/login to log into an existing account.
-        returns an error if it doesnt recieve json data.
-        returns an error if the username isnt in the database.
-        note: i forgot to add a "wrong password reply".
-        returns a cookie (the username + 10 character random string)
+        Returns an error if it doesnt recieve json data.
+        Returns an error if the username isn't in the database.
+        Note: i forgot to add a "wrong password reply".
+        Returns a cookie (the username + 10 character random string)
 
     -at api/add_product to add another product.
-        returns an error if it doesnt recieve json data.
-        if the product exists already, it gets modified and date updated is reset.
-        returns an error if you dont have a cookie.
+        Returns an error if it doesnt recieve json data.
+        If the product exists already, it gets modified and date updated is reset.
+        Returns an error if you dont have a cookie.
 
 GET:
     -at api/products/books to get a json list of all the books.
-        returns an error if you dont have a cookie.
+        Returns an error if you dont have a cookie.
 
     The server has internal checks for databases to not add the same ip twice, to not
 add the same user twice and for every send going outside the server I used the DIE macro to
 see if anything fails and where. Most of the logic is split up in small functions. The definitions 
-for the classes used are split up inside eachothers files.
+for the classes used are split up inside each others files.
 
