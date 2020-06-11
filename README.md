@@ -4,11 +4,11 @@ Macarie Razvan Cristian
 Program written in pure C++, using TCP and input multiplexing.
 You should be able to test this on any linux machine (or on WSL 2) without
 installing anything extra.
-    
+
 Libraries used: 
-    - Nlohman for JSON https://github.com/nlohmann/json
-    - Berkley sockets
-    - TCP and the Linux networking stack
+  - Nlohman for JSON https://github.com/nlohmann/json
+  - Berkley sockets
+  - TCP and the Linux networking stack
 </p>
 
 Preface
